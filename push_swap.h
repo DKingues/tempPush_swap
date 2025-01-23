@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:06:11 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/20 18:41:46 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:20:14 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,29 @@ typedef struct s_stack
 
 int	    get_index(t_stack *node);
 bool	above_median(t_stack *node);
+void	initialize_stack(t_stack *a, t_stack *b);
 
 // LIST MANAGEMENT
 
 t_stack *new_node(int n);
+void    add_node_front(t_stack **stack, t_stack *node);
 void    add_node_back(t_stack **stack, int n);
 t_stack *get_last_node(t_stack *stack);
 int     stack_size(t_stack *node);
+t_stack	*remove_front_node(t_stack **stack);
 
-// 
+
+// MOVEMENTS
+
+void    swap(t_stack *stack);
+void	swaps(t_stack *a, t_stack *b);
+void	push_a(t_stack **b, t_stack **a);
+void	push_b(t_stack **a, t_stack **b);
+void	rotate_a(t_stack **a);
+void	rotate_b(t_stack **b);
+void	rotate_r(t_stack **a, t_stack **b);
+void    reverse_rotate_a(t_stack **a);
+void    reverse_rotate_b(t_stack **b);
+void    reverse_rotate_r(t_stack **a, t_stack **b);
 
 #endif
