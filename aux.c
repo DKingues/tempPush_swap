@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:56:04 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/23 18:23:09 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:56:51 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ bool	above_median(t_stack *node)
 
 void	initialize_stack(t_stack *a, t_stack *b)
 {
+	a = ft_calloc(sizeof(t_stack), 1);
+	b = ft_calloc(sizeof(t_stack), 1);
+	if (!a || !b)
+    	return ;
 	a->data.number = 0;
 	a->data.index = 0;
 	a->data.cheapest = NULL;
@@ -50,4 +54,23 @@ void	initialize_stack(t_stack *a, t_stack *b)
 	b->data.cheapest = NULL;
 	b->data.above_median = NULL;
 	b->data.push_cost = 0;
+}
+
+int error_check(t_stack **stack, int n)
+{
+	if(!stack)
+		return	;
+	t_stack	*temp;
+
+	temp = stack;
+	while (temp)
+	{
+		if(temp->data.number > INT_MAX || temp->data.number < INT_MIN || temp->data.number == n)
+		{
+			printf("Error\n");
+			return (0);
+		}
+		temp = temp->next;
+	}
+	return (1);
 }

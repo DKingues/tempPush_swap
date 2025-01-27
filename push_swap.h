@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:06:11 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/23 18:20:14 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:48:22 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,13 @@ typedef struct s_stack
 int	    get_index(t_stack *node);
 bool	above_median(t_stack *node);
 void	initialize_stack(t_stack *a, t_stack *b);
+void    print_stack(t_stack *stack);
+void    error_check(t_stack *stack, int n);
 
 // LIST MANAGEMENT
 
 t_stack *new_node(int n);
+void    append_node(t_stack **stack, int n);
 void    add_node_front(t_stack **stack, t_stack *node);
 void    add_node_back(t_stack **stack, int n);
 t_stack *get_last_node(t_stack *stack);
