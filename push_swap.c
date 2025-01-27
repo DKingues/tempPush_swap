@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:11:16 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/24 18:50:18 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/01/27 19:13:03 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int main(int argc, char **argv)
         while (argv[i])
             append_node(&a, ft_atoi(argv[i++]));
     }
+	if (stack_size(a) == 3)
+		sort_three(&a);
     printf("START\n\n");
     printf("First Stack A\n\n");
     t_stack *temp = a;

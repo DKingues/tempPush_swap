@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:18:29 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/24 18:56:34 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:57:20 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void    append_node(t_stack **stack, int n)
 {
     t_stack *node;
     t_stack *last_node;
-    
-    if (error_check(*stack, n) == 0)
     
     if (!stack)
         return ;
@@ -110,7 +108,7 @@ int stack_size(t_stack *node)
     int i;
 
     i = 0;
-    while (node->next != NULL)
+    while (node)
     {
         i++;
         node = node->next;

@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:06:11 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/24 18:48:22 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:49:45 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,7 @@ void    reverse_rotate_a(t_stack **a);
 void    reverse_rotate_b(t_stack **b);
 void    reverse_rotate_r(t_stack **a, t_stack **b);
 
+// SORTING ALGORITHM
+
+void	sort_three(t_stack **stack);
 #endif
