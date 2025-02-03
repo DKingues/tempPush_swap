@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:35:51 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/23 18:35:03 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:14:03 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void reverse_rotate_b(t_stack **b)
 	last->next = temp;
 	temp->prev = last;
 	*b = last;
+	current_index((*b));
 }
 
 void reverse_rotate_r(t_stack **a, t_stack **b)

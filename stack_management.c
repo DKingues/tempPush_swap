@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:18:29 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/27 18:57:20 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:50:04 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,25 @@ void    add_node_front(t_stack **stack, t_stack *node)
     *stack = node;
 }
 
-void    add_node_back(t_stack **stack, int n)
-{
-    t_stack *new_node;
-    t_stack *current;
+// void    add_node_back(t_stack **stack, int n)
+// {
+//     t_stack *new_node;
+//     t_stack *current;
 
-    if (!stack || !*stack)
-        return ;
+//     if (!stack || !*stack)
+//         return ;
         
-    new_node = ft_calloc(sizeof(t_stack), 1);
-    if (!new_node)
-        return ;
+//     new_node = ft_calloc(sizeof(t_stack), 1);
+//     if (!new_node)
+//         return ;
         
-    current = get_last_node(*stack);
-    current->next = new_node;
-    new_node->next = NULL;
-    new_node->prev = current;
-    new_node->data.number = n;
-    new_node->data.index = get_index(*stack);
-}
+//     current = get_last_node(*stack);
+//     current->next = new_node;
+//     new_node->next = NULL;
+//     new_node->prev = current;
+//     new_node->data.number = n;
+//     new_node->data.index = current_index(*stack);
+// }
 
 t_stack *get_last_node(t_stack *stack)
 {
@@ -103,15 +103,15 @@ t_stack *get_last_node(t_stack *stack)
     return (temp_node);
 }
 
-int stack_size(t_stack *node)
+int stack_size(t_stack *stack)
 {
     int i;
 
     i = 0;
-    while (node)
+    while (stack->next != NULL)
     {
         i++;
-        node = node->next;
+        stack = stack->next;
     }
     return (i);
 }

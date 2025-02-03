@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:11:16 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/27 19:13:03 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:12:52 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int main(int argc, char **argv)
     t_stack         *b;
     int             i;
     char            **tmp;
-    printf("Initializing Stacks...\n\n");
     initialize_stack(a, b);
     
     if (argc < 2 || (argc == 2 && !argv[1][0]))
@@ -35,13 +34,10 @@ int main(int argc, char **argv)
         while (argv[i])
             append_node(&a, ft_atoi(argv[i++]));
     }
-	if (stack_size(a) == 3)
-		sort_three(&a);
     printf("START\n\n");
     printf("First Stack A\n\n");
     t_stack *temp = a;
     print_stack(temp);
-    reverse_rotate_a(&a);
     printf("Stack B\n\n");
     print_stack(b);
     printf("Second Stack A\n\n");
@@ -56,7 +52,7 @@ void print_stack(t_stack *stack)
 
     while (temp)
     {
-        printf("number: %d\t index: %d\n", temp->data.number, temp->data.index);
+        printf("number: %d\t index: %d\t median: %d\t push cost: %d\n", temp->data.number, temp->data.index, temp->data.above_median, temp->data.push_cost);
         temp = temp->next;
     }
 }

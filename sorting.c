@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:13:33 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/27 22:01:49 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/01/30 19:37:53 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,32 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 
-void sort_stack(t_stack **a, t_stack **b)
+void	set_data(t_stack **a, t_stack **b)
 {
-	if (stack_size(a) == 3 && !(is_sorted(a)))
+	current_index(a);
+	current_index(b);
+	push_cost(a, b);
+}
+
+void	sort_stack(t_stack **a, t_stack **b)
+{
+	if (stack_size(a) == 3 && !is_sorted(a)) 
 		sort_three(a);
-	else
+	if (stack_size(*a) > 3)
+		push_b(a, b);
+	if (stack_size(*a) > 3)
+		push_b(a, b);
+	while(stack_size(*a) > 3 && !is_sorted(*a))
 	{
-	push_b(a, b);
-	push_b(a, b);
-	}
-	if (!(is_sorted(a)))
-	{
+		set_data(a, b);
 		
 	}
+	sort_three(a);
+}
+
+void	move_to_b(t_stack **a, t_stack **b)
+{	
+	while ((*a)->data.index != 0 && !(*a)->data.above_median)
+		rotate(*a);
 	
 }
