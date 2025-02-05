@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:11:16 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/30 17:12:52 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/05 21:16:30 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int main(int argc, char **argv)
     t_stack         *b;
     int             i;
     char            **tmp;
-    initialize_stack(a, b);
-    
-    if (argc < 2 || (argc == 2 && !argv[1][0]))
-        return (printf("Error\n"), 0);
+    initialize_stack(a);
+	initialize_stack(b);
+  	if (argc < 2 || (argc == 2 && !argv[1][0]))
+        return (write (2 ,"Error\n", 6), 0);
     else if (argc == 2)
     {
         tmp = ft_split(argv[1], ' ');
@@ -34,14 +34,8 @@ int main(int argc, char **argv)
         while (argv[i])
             append_node(&a, ft_atoi(argv[i++]));
     }
-    printf("START\n\n");
-    printf("First Stack A\n\n");
-    t_stack *temp = a;
-    print_stack(temp);
-    printf("Stack B\n\n");
-    print_stack(b);
-    printf("Second Stack A\n\n");
-    print_stack(a);
+	sort_stack(&a, &b);
+	// print_stack(a);
 }
 
 void print_stack(t_stack *stack)

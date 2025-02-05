@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:35:51 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/30 17:14:03 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:40:11 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	push_b(t_stack **a, t_stack **b)
 		return ;
 	
 	t_stack	*temp;
-	
 	temp = remove_front_node(a);
 	add_node_front(b, temp);
 }

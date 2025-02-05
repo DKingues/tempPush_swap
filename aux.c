@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:56:04 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/01/30 19:35:39 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:32:15 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ void	current_index(t_stack *stack)
 	int		median;
 	
 	if (!stack)
-	{
 		return ;
-	}
 	i = 0;
 	median = stack_size(stack) / 2;
 	printf("%d", median);
@@ -63,7 +61,7 @@ int target_node(t_stack **a, t_stack **b)
 	int		best_target;
 	
 	temp_a = *a;
-	best_target = LONG_MIN;
+	best_target = INT_MAX;
 	
 	while (temp_a)
 	{
@@ -76,10 +74,8 @@ int target_node(t_stack **a, t_stack **b)
 		}
 		temp_a = temp_a->next;
 	}
-	if (best_target == LONG_MIN)
-	{
+	if (best_target == INT_MAX)
 		best_target = find_max(b);
-	}
 	return (best_target);
 }
 
@@ -89,7 +85,7 @@ int find_max(t_stack **stack)
 	int		biggest_number;
 	
 	temp = *stack;
-	biggest_number = LONG_MIN;
+	biggest_number = INT_MAX;
 	while (temp)
 	{
 		if (temp->data.number > biggest_number)
@@ -101,22 +97,16 @@ int find_max(t_stack **stack)
 	return (biggest_number);
 }
 
-void	initialize_stack(t_stack *a, t_stack *b)
+void	initialize_stack(t_stack *a)
 {
 	a = ft_calloc(sizeof(t_stack), 1);
-	b = ft_calloc(sizeof(t_stack), 1);
-	if (!a || !b)
+	if (!a)
     	return ;
 	a->data.number = 0;
 	a->data.index = 0;
 	a->data.cheapest = NULL;
 	a->data.above_median = NULL;
 	a->data.push_cost = 0;
-	b->data.number = 0;
-	b->data.index = 0;
-	b->data.cheapest = NULL;
-	b->data.above_median = NULL;
-	b->data.push_cost = 0;
 }
 
 // int error_check(t_stack **stack, int n)
