@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:06:11 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/05 20:39:51 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/10 21:29:58 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ typedef struct s_stack
 
 // AUX FUNCTS
 
-void	initialize_stack(t_stack *a);
+void	initialize_stack(t_stack **a, t_stack **b);
 void	current_index(t_stack *stack);
 void	push_cost(t_stack **a, t_stack **b);
-int 	target_node(t_stack **a, t_stack **b);
+int 	target_node(t_stack *a, t_stack *b);
 void    print_stack(t_stack *stack);
-int 	find_max(t_stack **stack);
+int 	find_max(t_stack *stack);
 void    error_check(t_stack *stack, int n);
 void 	print_stack(t_stack *stack);
 

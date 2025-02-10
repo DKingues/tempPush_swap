@@ -6,13 +6,13 @@
 #    By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/17 17:49:51 by dicosta-          #+#    #+#              #
-#    Updated: 2025/02/03 20:34:30 by dicosta-         ###   ########.fr        #
+#    Updated: 2025/02/10 21:12:39 by dicosta-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CCFLAGS = -Wall -Wextra -Werror
+CCFLAGS = -Wall -Wextra -Werror -g
 
 NAME = push_swap
 

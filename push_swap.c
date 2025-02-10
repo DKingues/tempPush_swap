@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:11:16 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/05 21:16:30 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:53:26 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int main(int argc, char **argv)
     t_stack         *b;
     int             i;
     char            **tmp;
-    initialize_stack(a);
-	initialize_stack(b);
+    initialize_stack(&a, &b);
+	
   	if (argc < 2 || (argc == 2 && !argv[1][0]))
         return (write (2 ,"Error\n", 6), 0);
     else if (argc == 2)

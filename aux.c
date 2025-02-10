@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:56:04 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/05 20:32:15 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/10 22:41:07 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	current_index(t_stack *stack)
 		return ;
 	i = 0;
 	median = stack_size(stack) / 2;
-	printf("%d", median);
 	while(stack)
 	{
 		stack->data.index = i;
@@ -37,54 +36,72 @@ void	push_cost(t_stack **a, t_stack **b)
 {
 	int	cost_a;
 	int cost_b;
+	t_stack *tmp_a;
+	t_stack *tmp_b;
 	
 	cost_a = 0;
 	cost_b = 0;
+	tmp_a = *a;
 	if(!*a || !a || !*b || !b )
 		return	;
-	if (!(*a)->data.above_median)
-		cost_a = (*a)->data.index;
-	else if ((*a)->data.above_median)
-		cost_a = stack_size((*a)) - (*a)->data.index;
-	while((*b)->data.number != target_node(a, b))
-		(*b) = (*b)->next;
-	if (!(*b)->data.above_median)
-		cost_b = (*b)->data.index;
-	else if ((*b)->data.above_median)
-		cost_b = stack_size((*b)) - (*b)->data.index;
-	(*a)->data.push_cost = cost_a + cost_b;
+	while (tmp_a)
+	{
+		tmp_b = *b;
+		if (!tmp_a->data.above_median)
+			cost_a = tmp_a->data.index;
+		else if (tmp_a->data.above_median)
+			cost_a = stack_size(*a) - tmp_a->data.index;
+		while(tmp_b->data.number != target_node(tmp_a, tmp_b))
+		{
+			printf(">>>>> number value a: %d\n", tmp_a->data.number);
+			tmp_b = tmp_b->next;
+		}
+		if (!tmp_b->data.above_median)
+			cost_b = tmp_b->data.index;
+		else if (tmp_b->data.above_median)
+		{
+			cost_b = stack_size(*b) - tmp_b->data.index;
+		}
+		printf("cost_b %d\n", cost_b);
+		printf("cost_a %d\n", cost_a);
+			
+		printf("\n>>>>> cost b: %d\n\n", cost_b);
+
+		tmp_a->data.push_cost = cost_a + cost_b;
+		
+		tmp_a = tmp_a->next;
+	}
 }
-int target_node(t_stack **a, t_stack **b)
+int target_node(t_stack *a, t_stack *b)
 {
 	t_stack *temp_a;
 	t_stack *temp_b;
 	int		best_target;
 	
-	temp_a = *a;
-	best_target = INT_MAX;
-	
-	while (temp_a)
+	temp_a = a;
+	best_target = INT_MIN;
+	temp_b = b;
+	while (temp_b)
 	{
-		temp_b = *b;
-		while (temp_b)
-		{	
-			if(temp_a->data.number > temp_b->data.number && best_target < temp_b->data.number)
-				best_target = temp_b->data.number;
-			temp_b = temp_b->next;
-		}
-		temp_a = temp_a->next;
+		printf("num value a: %d\n", temp_a->data.number);
+		printf("num value b: %d\n", temp_b->data.number);
+		if(temp_a->data.number > temp_b->data.number && best_target < temp_b->data.number)
+			best_target = temp_b->data.number;
+		printf("	best target: %d\n", best_target);
+		temp_b = temp_b->next;
 	}
-	if (best_target == INT_MAX)
+	if (best_target == INT_MIN)
 		best_target = find_max(b);
+	printf("%d SOU O TARGETNODE \n", best_target);
 	return (best_target);
 }
 
-int find_max(t_stack **stack)
+int find_max(t_stack *stack)
 {
 	t_stack	*temp;
 	int		biggest_number;
 	
-	temp = *stack;
+	temp = stack;
 	biggest_number = INT_MAX;
 	while (temp)
 	{
@@ -97,16 +114,10 @@ int find_max(t_stack **stack)
 	return (biggest_number);
 }
 
-void	initialize_stack(t_stack *a)
+void	initialize_stack(t_stack **a, t_stack **b)
 {
-	a = ft_calloc(sizeof(t_stack), 1);
-	if (!a)
-    	return ;
-	a->data.number = 0;
-	a->data.index = 0;
-	a->data.cheapest = NULL;
-	a->data.above_median = NULL;
-	a->data.push_cost = 0;
+	*a = NULL;
+	*b = NULL;
 }
 
 // int error_check(t_stack **stack, int n)

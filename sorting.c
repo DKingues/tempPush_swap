@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:13:33 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/05 21:12:06 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/10 21:04:52 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,37 @@ t_stack *find_cheapest(t_stack **a)
 
 void	set_data(t_stack *a, t_stack *b)
 {
-	print_stack(a);
-	print_stack(b);
 	current_index(a);
 	current_index(b);
-	print_stack(a);
-	print_stack(b);
+	push_cost(&a, &b);
+	//print_stack(a);
+	//printf("\n\n");
+	//print_stack(b);0
 }
 
 void	sort_stack(t_stack **a, t_stack **b)
 {
-	if (!*a || !*b || !a || !b)
+	if (!*a || !a)
 		return	;
 	if (stack_size((*a)) == 3 && !is_sorted((*a)))
 		sort_three(a);
-	if (stack_size(*a) > 3)
-		push_b(&*a, &*b);
+	print_stack(*b);
 	if (stack_size(*a) > 3)
 		push_b(a, b);
+	if (stack_size(*a) > 3)
+	{
+		push_b(a, b);
+		push_b(a, b);
+		push_b(a, b);
+	}
 	//while(stack_size(*a) > 3 && !is_sorted(*a))
 	//{
 	set_data(*a, *b);
 	//}
+	printf("\n\n");	
+	print_stack(*a);
+	printf("\n\n");
+	print_stack(*b);
 	sort_three(a);
 }
 
@@ -94,13 +103,12 @@ void	move_to_b(t_stack **a, t_stack **b)
 	t_stack	*cheapest_node;
 
 	cheapest_node = find_cheapest(a);
-	while ((*a) != cheapest_node && target_node)
+	while ((*a) != cheapest_node && target_node(a, b))
 	{
 		if ((*a)->data.index != 0 && !(*a)->data.above_median)
 			rotate_a(a);
 		if ((*a)->data.index != 0 && (*a)->data.above_median)
 			reverse_rotate_a(a);
 	}
-	
 }
 
