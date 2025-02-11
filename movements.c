@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:35:51 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/06 17:49:36 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:20:49 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@ void swap(t_stack *stack)
 	
 	int	i;
 
-	/*t_stack	*node1;
-	t_stack	*node2;
-	node1 = remove_front_node(stack);
-	node2 = remove_front_node(stack);
-	add_node_front(stack, node1);
-	add_node_front(stack, node2);*/
-	
 	i = stack->data.number;
 	stack->data.number = stack->next->data.number;
 	stack->next->data.number = i;

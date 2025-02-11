@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:11:16 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/06 17:53:26 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:51:38 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void print_stack(t_stack *stack)
 
     while (temp)
     {
-        printf("number: %d\t index: %d\t median: %d\t push cost: %d\n", temp->data.number, temp->data.index, temp->data.above_median, temp->data.push_cost);
+        printf("number: %d\t index: %d\t median: %d\t push cost: %d\t cheapest:%d\n", temp->data.number, temp->data.index, temp->data.above_median, temp->data.push_cost, temp->data.cheapest);
         temp = temp->next;
     }
 }
