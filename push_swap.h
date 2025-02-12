@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:06:11 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/11 17:48:32 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/12 21:42:37 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	initialize_stack(t_stack **a, t_stack **b);
 void	current_index(t_stack *stack);
 void	push_cost(t_stack **a, t_stack **b);
 int 	target_node(t_stack *a, t_stack *b);
+int		target_node_a(t_stack *a, t_stack *b);
 void    print_stack(t_stack *stack);
 int 	find_max(t_stack *stack);
 void    error_check(t_stack *stack, int n);
@@ -74,5 +75,8 @@ void    reverse_rotate_r(t_stack **a, t_stack **b);
 void	sort_three(t_stack **stack);
 void	sort_stack(t_stack **a, t_stack **b);
 void	move_to_b(t_stack **a, t_stack **b);
+void	move_to_a(t_stack **a, t_stack **b);
 void 	set_cheapest(t_stack *a);
+void 	rotate_last(t_stack **b);
+void 	perform_rotations(t_stack **a, t_stack **b, t_stack *tmp_a, t_stack *tmp_b);
 #endif

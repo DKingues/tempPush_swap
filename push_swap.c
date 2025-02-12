@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:11:16 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/11 17:51:38 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/12 21:48:25 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ int main(int argc, char **argv)
             append_node(&a, ft_atoi(argv[i++]));
     }
 	sort_stack(&a, &b);
-	// print_stack(a);
+	printf("STACK A\n");
+	print_stack(a);
+	printf("\n\n");
+	printf("STACK B\n");
+	print_stack(b);
+	printf("\n\n");
 }
 
 void print_stack(t_stack *stack)
