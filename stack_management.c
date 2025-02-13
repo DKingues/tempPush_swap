@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:18:29 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/10 22:35:47 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/13 21:47:08 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void    append_node(t_stack **stack, int n)
         last_node->next = node;
         node->prev = last_node;
     }
-    
 }
 void    add_node_front(t_stack **stack, t_stack *node)
 {
@@ -62,25 +61,6 @@ void    add_node_front(t_stack **stack, t_stack *node)
     node->prev = NULL;
     *stack = node; 
 }
-
-// void    add_node_back(t_stack **stack, int n)
-// {
-//     t_stack *new_node;
-//     t_stack *current;
-
-//     if (!stack || !*stack)
-//         return ;
-//     new_node = ft_calloc(sizeof(t_stack), 1);
-//     if (!new_node)
-//         return ;
-        
-//     current = get_last_node(*stack);
-//     current->next = new_node;
-//     new_node->next = NULL;
-//     new_node->prev = current;
-//     new_node->data.number = n;
-//     new_node->data.index = current_index(*stack);
-// }
 
 t_stack *get_last_node(t_stack *stack)
 {
@@ -107,7 +87,7 @@ int stack_size(t_stack *stack)
 		return (0);
     i = 0;
 	tmp = stack;
-    while (tmp != NULL)
+    while (tmp)
     {
         i++;
         tmp = tmp->next;

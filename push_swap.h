@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:06:11 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/12 21:42:37 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:40:38 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ void	initialize_stack(t_stack **a, t_stack **b);
 void	current_index(t_stack *stack);
 void	push_cost(t_stack **a, t_stack **b);
 int 	target_node(t_stack *a, t_stack *b);
-int		target_node_a(t_stack *a, t_stack *b);
+int		target_node_b(t_stack *b, t_stack *a);
 void    print_stack(t_stack *stack);
 int 	find_max(t_stack *stack);
+int 	find_min(t_stack *stack);
 void    error_check(t_stack *stack, int n);
 void 	print_stack(t_stack *stack);
 
@@ -59,15 +60,16 @@ t_stack	*remove_front_node(t_stack **stack);
 
 // MOVEMENTS
 
-void    swap(t_stack *stack);
-void	swaps(t_stack *a, t_stack *b);
+void	swap_a(t_stack *a);
 void	push_a(t_stack **b, t_stack **a);
-void	push_b(t_stack **a, t_stack **b);
 void	rotate_a(t_stack **a);
-void	rotate_b(t_stack **b);
-void	rotate_r(t_stack **a, t_stack **b);
 void    reverse_rotate_a(t_stack **a);
+void	swap_b(t_stack *b);
+void	push_b(t_stack **a, t_stack **b);
+void	rotate_b(t_stack **b);
 void    reverse_rotate_b(t_stack **b);
+void	swaps(t_stack *a, t_stack *b);
+void	rotate_r(t_stack **a, t_stack **b);
 void    reverse_rotate_r(t_stack **a, t_stack **b);
 
 // SORTING ALGORITHM
