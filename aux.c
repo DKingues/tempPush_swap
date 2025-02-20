@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:56:04 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/13 21:52:17 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/20 21:33:24 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,38 @@ void	current_index(t_stack *stack)
 void	push_cost(t_stack **a, t_stack **b)
 {
 	int		cost;
-	t_stack	*tmp_a;
-	t_stack	*tmp_b;
+	t_stack	*tp_a;
+	t_stack	*tp_b;
 
-	tmp_a = *a;
-	if (!*a || !a || !*b || !b)
+	if (!a || !*a || !b || !*b)
 		return ;
-	while (tmp_a)
+	tp_a = *a;
+	while (tp_a)
 	{
 		cost = 0;
-		tmp_b = *b;
-		if (tmp_a->data.above_median == 0)
-			cost = tmp_a->data.index;
-		if (tmp_a->data.above_median == 1)
-			cost = stack_size(*a) - tmp_a->data.index;
-		while (tmp_b->data.number != target_node(tmp_a, tmp_b))
-			tmp_b = tmp_b->next;
-		if (tmp_b->data.above_median == 0)
-			cost += tmp_b->data.index;
-		if (tmp_b->data.above_median == 1)
-			cost += stack_size(*b) - tmp_b->data.index;
-		tmp_a->data.push_cost = cost;
-		tmp_a = tmp_a->next;
+		tp_b = *b;
+		cost = cost_calc(tp_a, a);
+		while (tp_b->data.number != target_node(tp_a, tp_b))
+			tp_b = tp_b->next;
+		cost += cost_calc(tp_b, b);
+		if (tp_a->data.above_median == tp_b->data.above_median && \
+		stack_size(*a) - tp_a->data.index == stack_size(*b) - tp_b->data.index)
+			cost /= 2;
+		tp_a->data.push_cost = cost;
+		tp_a = tp_a->next;
 	}
+}
+
+int	cost_calc(t_stack *tmp, t_stack **stack)
+{
+	int	cost;
+
+	cost = 0;
+	if (tmp->data.above_median == 0)
+		cost = tmp->data.index;
+	if (tmp->data.above_median == 1)
+		cost = stack_size(*stack) - tmp->data.index;
+	return (cost);
 }
 
 int	target_node(t_stack *a, t_stack *b)
@@ -93,50 +102,12 @@ int	target_node_b(t_stack *b, t_stack *a)
 	best_target = INT_MAX;
 	while (temp_a)
 	{
-		if (temp_b->data.number < temp_a->data.number && \
-		best_target > temp_a->data.number)
+		if (temp_b->data.number < temp_a->data.number \
+		&& best_target > temp_a->data.number)
 			best_target = temp_a->data.number;
 		temp_a = temp_a->next;
 	}
 	if (best_target == INT_MAX)
-		best_target = find_min(b);
+		best_target = find_min(a);
 	return (best_target);
-}
-
-int	find_max(t_stack *stack)
-{
-	t_stack	*temp;
-	int		biggest_number;
-
-	temp = stack;
-	biggest_number = INT_MIN;
-	while (temp)
-	{
-		if (temp->data.number > biggest_number)
-			biggest_number = temp->data.number;
-		temp = temp->next;
-	}
-	return (biggest_number);
-}
-
-int	find_min(t_stack *stack)
-{
-	t_stack	*temp;
-	int		smallest_number;
-
-	temp = stack;
-	smallest_number = INT_MIN;
-	while (temp)
-	{
-		if (temp->data.number < smallest_number)
-			smallest_number = temp->data.number;
-		temp = temp->next;
-	}
-	return (smallest_number);
-}
-
-void	initialize_stack(t_stack **a, t_stack **b)
-{
-	*a = NULL;
-	*b = NULL;
 }

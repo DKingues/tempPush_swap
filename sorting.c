@@ -6,76 +6,21 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:13:33 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/13 20:58:31 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/20 21:58:05 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three(t_stack **stack)
-{
-	if ((*stack)->data.number > (*stack)->next->next->data.number)
-		rotate_a(stack);
-	if ((*stack)->data.number > (*stack)->next->data.number)
-		swap_a(*stack);
-	if ((*stack)->next->data.number > (*stack)->next->next->data.number)
-	{
-		reverse_rotate_a(stack);
-		swap_a(*stack);
-	}
-}
-
-int	is_sorted(t_stack *a)
-{
-	t_stack	*temp;
-
-	if (!a)
-		return (0);
-	temp = a;
-	while (a)
-	{
-		if (a->data.number > a->next->data.number)
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}
-
-void	set_cheapest(t_stack *a)
-{
-	t_stack	*temp;
-	int		min;
-
-	if (!a)
-		return ;
-	temp = a;
-	min = INT_MAX;
-	while (temp)
-	{
-		if (temp->data.push_cost < min)
-			min = temp->data.push_cost;
-		temp = temp->next;
-	}
-	temp = a;
-	while (temp->data.push_cost != min)
-		temp = temp->next;
-	temp->data.cheapest = true;
-}
-
-void	set_data(t_stack *a, t_stack *b)
-{
-	current_index(a);
-	current_index(b);
-	push_cost(&a, &b);
-	set_cheapest(a);
-}
-
 void	sort_stack(t_stack **a, t_stack **b)
 {
-	if (!*a || !a)
+	if (is_sorted(*a) == true)
 		return ;
-	if (stack_size((*a)) == 3 && !is_sorted((*a)))
+	if (stack_size(*a) == 3)
+	{
 		sort_three(a);
+		return ;
+	}
 	if (stack_size(*a) > 3)
 		push_b(a, b);
 	if (stack_size(*a) > 3)
@@ -84,12 +29,6 @@ void	sort_stack(t_stack **a, t_stack **b)
 	{
 		set_data(*a, *b);
 		move_to_b(a, b);
-		printf("STACK A\n\n");
-		print_stack(*a);
-		printf("\n");
-		printf("STACK B\n\n");
-		print_stack(*b);
-		printf("________________________________________________________________________________________________________");	
 	}
 	sort_three(a);
 	rotate_last(b);
@@ -97,6 +36,29 @@ void	sort_stack(t_stack **a, t_stack **b)
 	{
 		set_data(*a, *b);
 		move_to_a(a, b);
+	}
+	set_data(*a, *b);
+	last_rotate(a);
+}
+
+void	last_rotate(t_stack **a)
+{
+	int		check;
+	t_stack	*tmp_a;
+
+	tmp_a = *a;
+	check = find_min(tmp_a);
+	while ((tmp_a)->data.number != check)
+		(tmp_a) = (tmp_a)->next;
+	if ((tmp_a)->data.above_median == 0)
+	{
+		while (is_sorted(*a) == false)
+			rotate_a(a);
+	}
+	else
+	{
+		while (is_sorted(*a) == false)
+			reverse_rotate_a(a);
 	}
 }
 
@@ -108,12 +70,9 @@ void	move_to_b(t_stack **a, t_stack **b)
 
 	tmp_a = *a;
 	tmp_b = *b;
-	target = target_node(tmp_a, tmp_b);
 	while (tmp_a->data.cheapest != 1)
-	{
-		printf("in");
 		tmp_a = tmp_a->next;
-	}
+	target = target_node(tmp_a, tmp_b);
 	while (tmp_b && tmp_b->data.number != target)
 		tmp_b = tmp_b->next;
 	perform_rotations(a, b, tmp_a, tmp_b);
@@ -137,41 +96,30 @@ void	move_to_a(t_stack **a, t_stack **b)
 			rotate_a(a);
 		if (tmp_a->data.above_median == 1)
 			reverse_rotate_a(a);
-		set_data(*a, *b);
+		current_index_r(*a, *b);
 	}
 	push_a(b, a);
 }
 
-void	rotate_last(t_stack **b)
+void	perform_rotations(t_stack **a, t_stack **b, \
+t_stack *tmp_a, t_stack *tmp_b)
 {
-	t_stack	*tmp_b;
-	int		biggest_number;
-
-	tmp_b = *b;
-	biggest_number = find_max(*b);
-	while (tmp_b->data.number != biggest_number)
-		tmp_b = tmp_b->next;
+	while ((tmp_a->data.index != 0 && tmp_b->data.index != 0)
+		&& (tmp_a->data.above_median == tmp_b->data.above_median))
+	{
+		if (tmp_a->data.above_median == 0 && tmp_b->data.above_median == 0)
+			rotate_r(a, b);
+		if (tmp_a->data.above_median == 1 && tmp_b->data.above_median == 1)
+			reverse_rotate_r(a, b);
+		current_index_r(*a, *b);
+	}
 	while (tmp_b->data.index != 0)
 	{
 		if (tmp_b->data.above_median == 0)
 			rotate_b(b);
 		if (tmp_b->data.above_median == 1)
 			reverse_rotate_b(b);
-		current_index(*b);
-	}
-}
-
-void	perform_rotations(t_stack **a, t_stack **b, \
-t_stack *tmp_a, t_stack *tmp_b)
-{
-	while ((tmp_a->data.index != 0 && tmp_b->data.index != 0) 
-			&& (tmp_a->data.above_median == tmp_b->data.above_median))
-	{
-		if (tmp_a->data.above_median == 0 && tmp_b->data.above_median == 0)
-			rotate_r(a, b);
-		if (tmp_a->data.above_median == 1 && tmp_b->data.above_median == 1)
-			reverse_rotate_r(a, b);
-		set_data(*a, *b);
+		current_index_r(*a, *b);
 	}
 	while (tmp_a->data.index != 0)
 	{
@@ -179,14 +127,6 @@ t_stack *tmp_a, t_stack *tmp_b)
 			rotate_a(a);
 		if (tmp_a->data.above_median == 1)
 			reverse_rotate_a(a);
-		set_data(*a, *b);
-	}
-	while (tmp_b->data.index != 0)
-	{
-		if (tmp_b->data.above_median == 0)
-			rotate_b(b);
-		if (tmp_b->data.above_median == 1)
-			reverse_rotate_b(b);
-		set_data(*a, *b);
+		current_index_r(*a, *b);
 	}
 }

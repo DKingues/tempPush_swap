@@ -6,7 +6,7 @@
 #    By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/17 17:49:51 by dicosta-          #+#    #+#              #
-#    Updated: 2025/02/13 16:20:05 by dicosta-         ###   ########.fr        #
+#    Updated: 2025/02/20 21:55:20 by dicosta-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CCFLAGS = -Wall -Wextra -Werror -g
 
 NAME = push_swap
 
-SRC = push_swap.c stack_management.c aux.c move_a.c move_b.c move_r.c sorting.c
+SRC = push_swap.c stack_management.c aux.c move_a.c move_b.c move_r.c sorting.c \
+error_check.c aux2.c sorting2.c
 
 OBJ = $(SRC:.c=.o)
 

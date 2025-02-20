@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:16:33 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/13 20:17:03 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/20 21:44:38 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ void	swaps(t_stack *a, t_stack *b)
 
 void	rotate_r(t_stack **a, t_stack **b)
 {
-	if (!a || !*a || !(*a)->next || !b || !*b || !(*b)->next )
-		return	;
-	
 	t_stack	*temp;
-	t_stack *last;
+	t_stack	*last;
 	t_stack	*temp_b;
-	t_stack *last_b;
+	t_stack	*last_b;
 
+	if (!a || !*a || !(*a)->next || !b || !*b || !(*b)->next)
+		return ;
 	temp = *a;
 	temp_b = *b;
 	last = get_last_node(*a);
@@ -53,16 +52,15 @@ void	rotate_r(t_stack **a, t_stack **b)
 	write(1, "rr\n", 3);
 }
 
-void reverse_rotate_r(t_stack **a, t_stack **b)
+void	reverse_rotate_r(t_stack **a, t_stack **b)
 {
-	if (!a || !*a || !(*a)->next || !b || !*b || !(*b)->next )
-		return	;
-		
 	t_stack	*temp;
 	t_stack	*last;
 	t_stack	*temp_b;
 	t_stack	*last_b;
-	
+
+	if (!a || !*a || !(*a)->next || !b || !*b || !(*b)->next)
+		return ;
 	temp = *a;
 	last = get_last_node(*a);
 	last->prev->next = NULL;
