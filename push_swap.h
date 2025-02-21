@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:06:11 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/20 21:58:41 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:59:05 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef struct s_node
 {
-	int		number;
+	int		nbr;
 	int		index;
 	int		push_cost;
 	bool	above_median;

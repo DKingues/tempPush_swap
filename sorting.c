@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 19:13:33 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/20 21:58:05 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:59:15 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	last_rotate(t_stack **a)
 
 	tmp_a = *a;
 	check = find_min(tmp_a);
-	while ((tmp_a)->data.number != check)
+	while ((tmp_a)->data.nbr != check)
 		(tmp_a) = (tmp_a)->next;
 	if ((tmp_a)->data.above_median == 0)
 	{
@@ -73,7 +73,7 @@ void	move_to_b(t_stack **a, t_stack **b)
 	while (tmp_a->data.cheapest != 1)
 		tmp_a = tmp_a->next;
 	target = target_node(tmp_a, tmp_b);
-	while (tmp_b && tmp_b->data.number != target)
+	while (tmp_b && tmp_b->data.nbr != target)
 		tmp_b = tmp_b->next;
 	perform_rotations(a, b, tmp_a, tmp_b);
 	push_b(a, b);
@@ -88,7 +88,7 @@ void	move_to_a(t_stack **a, t_stack **b)
 	tmp_a = *a;
 	tmp_b = *b;
 	target = target_node_b(tmp_b, tmp_a);
-	while (tmp_a && tmp_a->data.number != target)
+	while (tmp_a && tmp_a->data.nbr != target)
 		tmp_a = tmp_a->next;
 	while (tmp_a && tmp_a->data.index != 0)
 	{

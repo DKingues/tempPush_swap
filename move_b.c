@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:14:47 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/20 21:42:48 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:57:53 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	swap_b(t_stack *b)
 
 	if (!b || !b->next)
 		return ;
-	i = b->data.number;
-	b->data.number = b->next->data.number;
-	b->next->data.number = i;
+	i = b->data.nbr;
+	b->data.nbr = b->next->data.nbr;
+	b->next->data.nbr = i;
 	write(1, "sb\n", 3);
 }
 

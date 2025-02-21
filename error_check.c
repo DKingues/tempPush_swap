@@ -6,16 +6,16 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:57:36 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/20 21:35:14 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:57:15 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	error_check(t_stack *stack, char **split_number)
+bool	error_check(t_stack *stack, char **split_nbr)
 {
-	if (check_dupes(stack) == true && check_int_minmax(split_number) == true
-		&& check_non_int(split_number) == true)
+	if (check_dupes(stack) == true && check_int_minmax(split_nbr) == true
+		&& check_non_int(split_nbr) == true)
 		return (true);
 	else
 		return (false);
@@ -32,7 +32,7 @@ bool	check_dupes(t_stack *stack)
 		tmp2 = tmp->next;
 		while (tmp2)
 		{
-			if (tmp2->data.number == tmp->data.number)
+			if (tmp2->data.nbr == tmp->data.nbr)
 				return (false);
 			tmp2 = tmp2->next;
 		}
@@ -41,22 +41,22 @@ bool	check_dupes(t_stack *stack)
 	return (true);
 }
 
-bool	check_non_int(char **split_number)
+bool	check_non_int(char **split_nbr)
 {
 	int	j;
 	int	i;
 	int	check;
 
 	j = 1;
-	while (split_number[j])
+	while (split_nbr[j])
 	{
 		i = 0;
-		while (split_number[j][i])
+		while (split_nbr[j][i])
 		{
-			if ((split_number[j][0] == '-' \
-				|| split_number[j][0] == '+') && i == 0)
+			if ((split_nbr[j][0] == '-' \
+				|| split_nbr[j][0] == '+') && i == 0)
 				i++;
-			if (split_number[j][i] < '0' || split_number[j][i] > '9')
+			if (split_nbr[j][i] < '0' || split_nbr[j][i] > '9')
 				return (false);
 			i++;
 		}
@@ -65,25 +65,25 @@ bool	check_non_int(char **split_number)
 	return (true);
 }
 
-bool	check_int_minmax(char **split_number)
+bool	check_int_minmax(char **split_nbr)
 {
 	int		i;
 	int		j;
-	long	number;
+	long	nbr;
 
 	j = 0;
-	while (split_number[j])
+	while (split_nbr[j])
 	{
 		i = 0;
-		number = 0;
-		if (split_number[j][i] == '-')
+		nbr = 0;
+		if (split_nbr[j][i] == '-')
 			i++;
-		while (split_number[j][i])
+		while (split_nbr[j][i])
 		{
-			number *= 10;
-			number += split_number[j][i] - '0';
+			nbr *= 10;
+			nbr += split_nbr[j][i] - '0';
 			i++;
-			if (number > INT_MAX)
+			if (nbr > INT_MAX)
 				return (false);
 		}
 		j++;

@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 16:16:33 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/20 21:44:38 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:58:03 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	swaps(t_stack *a, t_stack *b)
 {
-	int	a_number;
-	int	b_number;
+	int	a_nbr;
+	int	b_nbr;
 
-	a_number = a->data.number;
-	a->data.number = a->next->data.number;
-	a->next->data.number = a_number;
-	b_number = b->data.number;
-	b->data.number = b->next->data.number;
-	b->next->data.number = b_number;
+	a_nbr = a->data.nbr;
+	a->data.nbr = a->next->data.nbr;
+	a->next->data.nbr = a_nbr;
+	b_nbr = b->data.nbr;
+	b->data.nbr = b->next->data.nbr;
+	b->next->data.nbr = b_nbr;
 	write(1, "ss\n", 3);
 }
 

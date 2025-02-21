@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:18:29 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/20 22:04:36 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:59:35 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_stack	*new_node(int n)
 	new = ft_calloc(sizeof(t_stack), 1);
 	if (!new)
 		return (NULL);
-	new->data.number = n;
+	new->data.nbr = n;
 	new->data.index = 0;
 	new->next = NULL;
 	new->prev = NULL;
@@ -35,7 +35,7 @@ void	append_node(t_stack **stack, int n)
 		return ;
 	node = ft_calloc(sizeof(t_stack), 1);
 	node->next = NULL;
-	node->data.number = n;
+	node->data.nbr = n;
 	if (!(*stack))
 	{
 		(*stack) = node;

@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 18:11:16 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/20 21:47:26 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:03:17 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = 0;
+	if (argc == 1)
+		return (0);
 	initialize_stack(&a, &b);
 	if (argc == 2)
 	{

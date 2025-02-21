@@ -6,30 +6,39 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 21:55:25 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/20 21:58:19 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:59:23 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three(t_stack **stack)
+void	sort_three(t_stack **a)
 {
-	if ((*stack)->data.number > (*stack)->next->data.number && (*stack)->next->data.number < (*stack)->next->next->data.number && (*stack)->data.number > (*stack)->next->next->data.number)
-		rotate_a(stack);
-	else if ((*stack)->data.number > (*stack)->next->data.number && (*stack)->next->data.number > (*stack)->next->next->data.number && (*stack)->next->next->data.number < (*stack)->data.number)
+	if ((*a)->data.nbr > (*a)->next->data.nbr
+		&& (*a)->next->data.nbr < (*a)->next->next->data.nbr
+		&& (*a)->data.nbr > (*a)->next->next->data.nbr)
+		rotate_a(a);
+	if ((*a)->data.nbr > (*a)->next->data.nbr
+		&& (*a)->next->data.nbr > (*a)->next->next->data.nbr
+		&& (*a)->next->next->data.nbr < (*a)->data.nbr)
 	{
-		swap_a(*stack);
-		reverse_rotate_a(stack);
+		swap_a(*a);
+		reverse_rotate_a(a);
 	}
-	else if ((*stack)->data.number < (*stack)->next->data.number && (*stack)->next->data.number > (*stack)->next->next->data.number && (*stack)->data.number > (*stack)->next->next->data.number)
-		reverse_rotate_a(stack);
-	else if ((*stack)->data.number < (*stack)->next->data.number && (*stack)->next->data.number > (*stack)->next->next->data.number && (*stack)->data.number < (*stack)->next->next->data.number)
+	if ((*a)->data.nbr < (*a)->next->data.nbr
+		&& (*a)->next->data.nbr > (*a)->next->next->data.nbr
+		&& (*a)->data.nbr > (*a)->next->next->data.nbr)
+		reverse_rotate_a(a);
+	if ((*a)->data.nbr < (*a)->next->data.nbr
+		&& (*a)->next->data.nbr > (*a)->next->next->data.nbr
+		&& (*a)->data.nbr < (*a)->next->next->data.nbr)
 	{
-		reverse_rotate_a(stack);
-		swap_a(*stack);
+		reverse_rotate_a(a);
+		swap_a(*a);
 	}
-	else if ((*stack)->data.number > (*stack)->next->data.number && (*stack)->next->data.number < (*stack)->next->next->data.number && (*stack)->next->next->data.number > (*stack)->data.number)
-		swap_a(*stack);
+	if ((*a)->data.nbr > (*a)->next->data.nbr && (*a)->next->data.nbr < \
+	(*a)->next->next->data.nbr && (*a)->next->next->data.nbr > (*a)->data.nbr)
+		swap_a(*a);
 }
 
 bool	is_sorted(t_stack *a)
@@ -41,7 +50,7 @@ bool	is_sorted(t_stack *a)
 	temp = a;
 	while (temp->next)
 	{
-		if (temp->data.number > temp->next->data.number)
+		if (temp->data.nbr > temp->next->data.nbr)
 			return (false);
 		temp = temp->next;
 	}
@@ -80,11 +89,11 @@ void	set_data(t_stack *a, t_stack *b)
 void	rotate_last(t_stack **b)
 {
 	t_stack	*tmp_b;
-	int		biggest_number;
+	int		biggest_nbr;
 
 	tmp_b = *b;
-	biggest_number = find_max(*b);
-	while (tmp_b->data.number != biggest_number)
+	biggest_nbr = find_max(*b);
+	while (tmp_b->data.nbr != biggest_nbr)
 		tmp_b = tmp_b->next;
 	while (tmp_b->data.index != 0)
 	{

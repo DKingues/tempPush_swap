@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:56:04 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/20 21:33:24 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:56:50 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	push_cost(t_stack **a, t_stack **b)
 		cost = 0;
 		tp_b = *b;
 		cost = cost_calc(tp_a, a);
-		while (tp_b->data.number != target_node(tp_a, tp_b))
+		while (tp_b->data.nbr != target_node(tp_a, tp_b))
 			tp_b = tp_b->next;
 		cost += cost_calc(tp_b, b);
 		if (tp_a->data.above_median == tp_b->data.above_median && \
@@ -81,9 +81,9 @@ int	target_node(t_stack *a, t_stack *b)
 	best_target = INT_MIN;
 	while (temp_b)
 	{
-		if (temp_a->data.number > temp_b->data.number \
-		&& best_target < temp_b->data.number)
-			best_target = temp_b->data.number;
+		if (temp_a->data.nbr > temp_b->data.nbr \
+		&& best_target < temp_b->data.nbr)
+			best_target = temp_b->data.nbr;
 		temp_b = temp_b->next;
 	}
 	if (best_target == INT_MIN)
@@ -102,9 +102,9 @@ int	target_node_b(t_stack *b, t_stack *a)
 	best_target = INT_MAX;
 	while (temp_a)
 	{
-		if (temp_b->data.number < temp_a->data.number \
-		&& best_target > temp_a->data.number)
-			best_target = temp_a->data.number;
+		if (temp_b->data.nbr < temp_a->data.nbr \
+		&& best_target > temp_a->data.nbr)
+			best_target = temp_a->data.nbr;
 		temp_a = temp_a->next;
 	}
 	if (best_target == INT_MAX)

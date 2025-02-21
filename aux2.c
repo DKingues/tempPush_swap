@@ -6,7 +6,7 @@
 /*   By: dicosta- <dicosta-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 21:32:30 by dicosta-          #+#    #+#             */
-/*   Updated: 2025/02/20 21:33:49 by dicosta-         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:56:17 by dicosta-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	find_max(t_stack *stack)
 	biggest_number = INT_MIN;
 	while (temp)
 	{
-		if (temp->data.number > biggest_number)
-			biggest_number = temp->data.number;
+		if (temp->data.nbr > biggest_number)
+			biggest_number = temp->data.nbr;
 		temp = temp->next;
 	}
 	return (biggest_number);
@@ -37,8 +37,8 @@ int	find_min(t_stack *stack)
 	smallest_number = INT_MAX;
 	while (temp)
 	{
-		if (temp->data.number < smallest_number)
-			smallest_number = temp->data.number;
+		if (temp->data.nbr < smallest_number)
+			smallest_number = temp->data.nbr;
 		temp = temp->next;
 	}
 	return (smallest_number);
@@ -64,7 +64,7 @@ void	free_stack(t_stack **stack)
 		aux->data.cheapest = NULL;
 		aux->data.push_cost = 0;
 		aux->data.index = 0;
-		aux->data.number = 0;
+		aux->data.nbr = 0;
 		free(aux);
 	}
 	*stack = NULL;
